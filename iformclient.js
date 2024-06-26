@@ -634,3 +634,31 @@ function disburseCustomerType(){
     }
     functions.updateJSON()
 }
+function disburseGetAgeCustomer(){
+    let getBirthDate = functions.getValue('DepSatTrxLeadsApplicant.dateofbirth');
+    
+    functions.setValues({
+        'textbox5' : getAge(getBirthDate)
+    });
+
+    functions.updateJSON();
+}
+
+function disburseGetAgeSpouse(){
+    let getBirthDate = functions.getValue('DepSatTrxLeadsApplicant.spousedob');
+    
+    functions.setValues({
+        'textbox142' : getAge(getBirthDate)
+    });
+
+    functions.updateJSON();
+}
+function disburseGetAgeGuarantor(){
+    let getBirthDate = functions.getValue('DepSatTrxLeadsGuarantor.dateofbirth');
+    
+    functions.setValues({
+        'textbox24' : getAge(getBirthDate)
+    });
+
+    functions.updateJSON();
+}
