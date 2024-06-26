@@ -621,3 +621,16 @@ function getAgeGuarantorAV() {
 
     functions.updateJSON();
 }
+function disburseCustomerType(){
+    const valCustType = functions.getValue("DepSatTrxLeadsApplicant.customertype")
+    if(valCustType === "Individual"){
+        functions.setStyle("frame34","visible","false");
+        functions.setStyle("frame35","visible","true");
+        functions.setStyle("frame3","visible","true");
+    } else {
+        functions.setStyle("frame34","visible","true");
+        functions.setStyle("frame35","visible","false");
+        functions.setStyle("frame3","visible","false");
+    }
+    functions.updateJSON()
+}
