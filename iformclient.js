@@ -517,3 +517,107 @@ function guarantorCheck(){
     functions.updateJSON();
 }
 
+
+
+// form 9 & 10
+function hideIndividualCompanyDP() {
+    let value = functions.getValue('DepSatTrxLeadsApplicant.sourceofloads');
+
+    if (value == "Individual") {
+        functions.setStyle("frame51", "visible", "false");
+
+    } else if (value == "Company") {
+        functions.setStyle("frame3", "visible", "false");
+        functions.setStyle("frame4", "visible", "false");
+    }
+
+    functions.updateJSON();
+}
+
+function hideIndividualCompanyAV() {
+
+    let value = functions.getValue('DepSatTrxLeadsApplicant.customertype');
+
+    if (value == "Individual") {
+        functions.setStyle("frame30", "visible", "false");
+
+    } else if (value == "Company") {
+        functions.setStyle("frame3", "visible", "false");
+        functions.setStyle("frame4", "visible", "false");
+    }
+
+    functions.updateJSON();
+}
+
+
+function getAge(getBirthDate) {
+    let today = new Date();
+    let diff = Math.abs(today - getBirthDate);
+    let age = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+    
+    return age.toString();
+}
+
+
+function getAgeCustomerDP() {
+    let getBirthDate = functions.getValue('DepSatTrxLeadsApplicant.dateofbirth');
+    
+    functions.setValues({
+        'textbox10' : getAge(getBirthDate)
+    });
+
+    functions.updateJSON();
+}
+
+
+function getAgeSpouseDP() {
+    let getBirthDate = functions.getValue('DepSatTrxLeadsApplicant.spousedob');
+    
+    functions.setValues({
+        'textbox22' : getAge(getBirthDate)
+    });
+
+    functions.updateJSON();
+}
+
+function getAgeGuarantorDP() {
+    let getBirthDate = functions.getValue('DepsatTrxLeadsGuarantor.dateofbirth');
+    
+    functions.setValues({
+        'textbox38' : getAge(getBirthDate)
+    });
+
+    functions.updateJSON();
+}
+
+
+function getAgeCustomerAV() {
+    let getBirthDate = functions.getValue('DepSatTrxLeadsApplicant.dateofbirth');
+    
+    functions.setValues({
+        'textbox10' : getAge(getBirthDate)
+    });
+
+    functions.updateJSON();
+}
+
+
+function getAgeSpouseAV() {
+    let getBirthDate = functions.getValue('DepSatTrxLeadsApplicant.spousedob');
+    
+    functions.setValues({
+        'textbox22' : getAge(getBirthDate)
+    });
+
+    functions.updateJSON();
+}
+
+function getAgeGuarantorAV() {
+    let getBirthDate = functions.getValue('DepsatTrxLeadsGuarantor.dateofbirth');
+    
+    functions.setValues({
+        'textbox38' : getAge(getBirthDate)
+    });
+
+    functions.updateJSON();
+}
