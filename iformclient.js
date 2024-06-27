@@ -535,7 +535,7 @@ function guarantorCheck(){
 
 // form 9 & 10
 function hideIndividualCompanyDP() {
-    let value = functions.getValue('DepSatTrxLeadsApplicant.sourceofloads');
+    let value = functions.getValue("DepSatTrxLeadsApplicant.customertype");
 
     if (value == "Individual") {
         functions.setStyle("frame51", "visible", "false");
@@ -550,7 +550,7 @@ function hideIndividualCompanyDP() {
 
 function hideIndividualCompanyAV() {
 
-    let value = functions.getValue('DepSatTrxLeadsApplicant.customertype');
+    let value = functions.getValue("DepSatTrxLeadsApplicant.customertype");
 
     if (value == "Individual") {
         functions.setStyle("frame30", "visible", "false");
