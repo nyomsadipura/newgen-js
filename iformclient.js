@@ -663,7 +663,134 @@ function disburseGetAgeGuarantor(){
     functions.updateJSON();
 }
 
+function individualDataVerificationForm(boolean){
+    console.log("individual func masuk");
+    functions.setStyle("frame3", "visible", boolean);//frame data pasangan
+    functions.setStyle("DepSatTrxLeadsApplicant.placeofbirth", "visible", boolean); //tempat lahir
+    functions.setStyle("DepSatTrxLeadsApplicant.identityno", "visible", boolean); //No KTP
+    functions.setStyle("DepSatTrxLeadsApplicant.dateofbirth","visible",boolean); //tanggal lahir 
+    functions.setStyle("DepSatTrxLeadsApplicant.gender", "visible", boolean); // jenis kelamin
+    functions.setStyle("DepSatTrxLeadsApplicant.religion", "visible", boolean); // agama
+    functions.setStyle("DepSatTrxLeadsApplicant.occupation", "visible", boolean); // pekerjaan
+    functions.setStyle("DepSatTrxLeadsApplicant.maritalstatus", "visible", boolean); // status perkawinan
+    functions.setStyle("DepSatTrxLeadsApplicant.mobilephone", "visible", boolean); // nomor handphone
+    functions.setStyle("DepSatTrxLeadsApplicant.nationality", "visible", boolean); // Kewarganegaraan
+    functions.setStyle("DepSatTrxLeadsApplicant.familyno", "visible", boolean); // No Kartu keluarga
+    functions.setStyle("DepSatTrxLeadsApplicant.email", "visible", boolean); //alamat email
+    functions.setStyle("DepSatTrxLeadsApplicant.mothermaidenname","visible",boolean); // Nama gadis ibukanduang
+    functions.setStyle("DepSatTrxLeadsApplicant.noofdependant","visible",boolean); // jumlah tanggungan
+    functions.setStyle("DepSatTrxLeadsApplicant.passportno","visible",boolean); // nomor paspor
+    functions.setStyle("DepSatTrxLeadsApplicant.passpportenddate","visible",boolean); // tanggal berakhir paspor
+}
 
+function companyDataVerificationForm(boolean){
+    console.log("company func masuk");
+    functions.setStyle("frame3", "visible", boolean);//frame data pasangan
+    functions.setStyle("DepSatTrxLeadsApplicant.companytitle", "visible", boolean); // badan usaha
+    functions.setStyle("DepSatTrxLeadsApplicant.companyname", "visible", boolean); // nama perusahaan
+    functions.setStyle("DepSatTrxLeadsApplicant.companyphone", "visible", boolean); // no telpon perusahan
+    functions.setStyle("DepSatTrxLeadsApplicant.noofestablishmentdeed", "visible", boolean); // no akta pendirian
+    functions.setStyle("DepSatTrxLeadsApplicant.companyownershipstatus", "visible", boolean); // status kepemilikan tempat usaha
+    functions.setStyle("DepSatTrxLeadsApplicant.economysector", "visible", boolean); // sektor ekonomi
+    functions.setStyle("DepSatTrxLeadsApplicant.dateofestablishmentdeed","visible",boolean); //tanggal akta pendirian
+    functions.setStyle("DepSatTrxLeadsApplicant.economysubsector", "visible", boolean); // sub sector economi
+
+}
+
+
+function hideShowDataVerificationForm() {
+    var customerType = functions.getValue("DepSatTrxLeadsApplicant.customertype");
+    console.log("consumerType", customerType);
+  
+    if (customerType == "Individual") {
+        console.log("individual detected");
+      companyDataVerificationForm("false");
+      individualDataVerificationForm("true");  
+
+    } else if (customerType == "Company") {
+        companyDataVerificationForm("true");
+        individualDataVerificationForm("false");
+    }
+    functions.updateJSON();
+ }
+
+function overrideDataVerificationForm() {
+    var override = functions.getValue("combo1");
+    if (override=="Yes") {
+        functions.setStyle("frame1", "disable", "false");
+        functions.setStyle("combo1", "disable", "false");
+        functions.updateJSON();
+    }else if(override=="No"){
+        functions.setStyle("frame1", "disable", "true");
+        functions.setStyle("combo1", "disable", "false");
+        functions.updateJSON();
+    }
+}
+
+
+function hideApprovalKCPForm() {
+    var costumerType = functions.getValue("DepSatTrxLeadsApplicant.customertype");
+
+    if (costumerType == "Individual") {
+        console.log("individual detected");
+        functions.setStyle("frame51", "visible", "true");
+        functions.setStyle("frame52", "visible", "true");
+        functions.setStyle("DepsatTrxLeadsGuarantor.isguarantorneed", "visible", "true");
+        functions.setStyle("frame53", "visible", "false");
+        functions.updateJSON();
+    }else if (costumerType == "Company") {
+        functions.setStyle("frame51", "visible", "false");
+        functions.setStyle("frame52", "visible", "false");
+        functions.setStyle("DepsatTrxLeadsGuarantor.isguarantorneed", "visible", "false");
+        functions.setStyle("frame53", "visible", "true");
+        functions.updateJSON();
+    }
+}
+
+
+function getAge(){
+    var costumerType = functions.getValue("DepSatTrxLeadsApplicant.customertype");
+
+    if (costumerType == "Individual") {
+        functions.setStyle("DepsatTrxLeadsGuarantor.placeofbirth", "visible", "false");
+        functions.setStyle("textbox226", "visible", "true");
+
+        var dobApplicant = functions.getValue("DepSatTrxLeadsApplicant.dateofbirth");
+        var dobSpouse = functions.getValue("DepSatTrxLeadsApplicant.spousedob");
+        var dobGuarantor = functions.getValue("DepsatTrxLeadsGuarantor.dateofbirth");
+
+        var today = new Date();
+
+        var birthDateApplicant = new Date(dobApplicant);
+        var birthDateSpouse = new Date(dobSpouse);
+        var birthDateGuarantor = new Date(dobGuarantor);
+
+        var ageApplicant = today.getFullYear() - birthDateApplicant.getFullYear();
+        var mApplicant = today.getMonth() - birthDateApplicant.getMonth();
+        if (mApplicant < 0 || (mApplicant === 0 && today.getDate() < birthDateApplicant.getDate())) {
+            ageApplicant--;
+        }
+        var ageSpouse = today.getFullYear() - birthDateSpouse.getFullYear();
+        var mSpouse = today.getMonth() - birthDateSpouse.getMonth();
+        if (mSpouse < 0 || (mSpouse === 0 && today.getDate() < birthDateSpouse.getDate())) {
+            ageSpouse--;
+        }
+        var ageGuarantor = today.getFullYear() - birthDateGuarantor.getFullYear();
+        var mGuarantor = today.getMonth() - birthDateGuarantor.getMonth();
+        if (mGuarantor < 0 || (mGuarantor === 0 && today.getDate() < birthDateGuarantor.getDate())) {
+            ageGuarantor--;
+        }
+        functions.setValue("textbox180", ageApplicant.toString());
+        functions.setValue("textbox253", ageSpouse.toString());
+        functions.setValue("textbox226", ageGuarantor.toString());  
+        functions.updateJSON();
+    }else if(costumerType == "Company"){
+        functions.setStyle("DepsatTrxLeadsGuarantor.placeofbirth", "visible", "true");
+        functions.setStyle("textbox226", "visible", "false");
+        functions.updateJSON();
+    }
+
+}
 
 // custom java
 
