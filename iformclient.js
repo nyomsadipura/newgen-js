@@ -668,13 +668,13 @@ function disburseGetAgeGuarantor(){
 // custom java
 
 function getCityByProvinceId() {
-    functions.executeServerEvent("","provinceDropdown","",true);
-}
-
-function getDistrictByCityId() {
     functions.executeServerEvent("","cityDropdown","",true);
 }
 
-function getVillageByDistrictId() {
+function getDistrictByCityId() {
     functions.executeServerEvent("","districtDropdown","",true);
+}
+
+function getVillageByDistrictId() {
+    functions.executeServerEvent("","villageDropdown","",true);
 }
