@@ -328,20 +328,39 @@ function onEventRecievedFromMobile(recievedDataString) {
 
 // Additional code is below
 
+const mandatorySetFunc = (arrField, condition) => {
+    arrField.forEach(element => {
+        functions.setStyle(element, "mandatory", condition);
+    });
+}
 
 const consumentType = () => {
+    const individualMandatoryField = ["textbox3", "textbox4", "textbox9", "datepick2", "textbox10",
+        "combo10", "textbox12", "combo12", "combo11", "textbox11", "combo13", "combo14",
+        "combo15", "combo16", "combo17", "combo18", "textbox13", "textbox14"];
+
+    const companyMandatoryField = ["DepSatTrxLeadsApplicant.companytitle",
+            "DepSatTrxLeadsApplicant.companyname",
+            "DepSatTrxLeadsApplicant.npwpname",
+            "DepSatTrxLeadsApplicant.companyphone",
+            "DepSatTrxLeadsApplicant.npwpregistereddate",
+            "DepSatTrxLeadsApplicant.companyemail"]
+
     const valCustType = functions.getValue("DepSatTrxLeadsApplicant.customertype")
     const isIndividual = valCustType === "Individual";
-    const condition1 = isIndividual ? "false":"true";
-    const condition2 = isIndividual ? "true":"false";
+    const condition1 = isIndividual ? "true":"false";
+    const condition2 = isIndividual ? "false":"true";
 
-    functions.setStyle("button6","visible",condition2);
-    functions.setStyle("button1","visible",condition2);
-    functions.setStyle("frame2","visible",condition2);
-    functions.setStyle("frame3","visible",condition2);
-    functions.setStyle("frame19","visible",condition1);
-    functions.updateJSON()
+    functions.setStyle("button8","visible",condition1);
+    functions.setStyle("button1","visible",condition1);
+    functions.setStyle("frame2","visible",condition1);
+    functions.setStyle("frame3","visible",condition1);
+    functions.setStyle("frame19","visible",condition2);
+    mandatorySetFunc(individualMandatoryField,condition1);
+    mandatorySetFunc(companyMandatoryField,condition2);
+    functions.updateJSON();
 }
+
 
 /*
 const consumeApi = async (apiUrl) => {
@@ -819,3 +838,4 @@ function getDistrictByCityId() {
 function getVillageByDistrictId() {
     functions.executeServerEvent("","villageDropdown","",true);
 }
+
