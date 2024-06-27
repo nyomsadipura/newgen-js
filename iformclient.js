@@ -343,6 +343,7 @@ const consumentType = () => {
     functions.updateJSON()
 }
 
+/*
 const consumeApi = async (apiUrl) => {
     await fetch(apiUrl)
         .then(res => {
@@ -414,7 +415,8 @@ const sikpCheck = async () => {
         functions.setValue("verificationcontrols_idsikp","UnVerified");
     }
     functions.updateJSON();
-}    
+}
+*/
 
 
 function individualDetilCredit(boolean){
@@ -460,6 +462,18 @@ function hideShowItemDetailCredit() {
     }
     functions.updateJSON();
   }
+
+
+function approvalDesicion(){
+    var approval = functions.getValue("combo183");
+
+    if (approval == "Proceed"){
+        functions.setStyle("combo184","enabled","false");    
+    }
+    else if (approval == "Rejected"){
+        functions.setStyle("combo184","enabled","true");
+    }
+}
 
 
 function customerType(){
