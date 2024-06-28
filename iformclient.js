@@ -502,7 +502,7 @@ function customerType(){
     const condition2 = isCompany ? "true":"false";
 
     functions.setStyle("frame3","visible",condition1);
-    functions.setStyle("frame35","visible",condition2);
+    functions.setStyle("frame36","visible",condition2);
     functions.setStyle("DepSatTrxLeadsApplicant.addressdomicile","visible",condition1);
     functions.setStyle("DepSatTrxLeadsApplicant.citydomicile","visible",condition1);
     functions.setStyle("DepSatTrxLeadsApplicant.villagedomicile","visible",condition1);
@@ -549,7 +549,16 @@ function guarantorCheck(){
     }
     functions.updateJSON();
 }
-
+function isCollateralCheck(){
+    const isCollateral = functions.getValue("IsCollateral");
+    if(isCollateral){
+        functions.setStyle("DepSatTrxLeadsCollateral","visible","true");
+    }
+    else{
+        functions.setStyle("DepSatTrxLeadsCollateral","visible","false");
+    }
+    functions.updateJSON();
+}
 
 
 // form 9 & 10
