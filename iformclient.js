@@ -334,7 +334,7 @@ const mandatorySetFunc = (arrField, condition) => {
     });
 }
 
-const consumentType = () => {
+function consumentType(){
     const individualMandatoryField = ["textbox3", "textbox4", "textbox9", "datepick2", "textbox10",
         "combo10", "textbox12", "combo12", "combo11", "textbox11", "combo13", "combo14",
         "combo15", "combo16", "combo17", "combo18", "textbox13", "textbox14"];
