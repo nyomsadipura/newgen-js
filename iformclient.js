@@ -848,3 +848,22 @@ function getVillageByDistrictId() {
     functions.executeServerEvent("","villageDropdown","",true);
 }
 
+const CheckFieldForEnableDisable = (currentPositionCheck, targetDisable) => {
+    console.log(currentPositionCheck);
+    if(currentPositionCheck === "Select") {
+        functions.setStyle(targetDisable, "disable", "true")
+        
+    } else {
+        functions.setStyle(targetDisable, "disable", "false")  
+    }
+    functions.updateJSON()
+}
+
+function enableAndDisableAddress() {
+    const province = functions.getValue('DepSatTrxLeadsApplicant.province');
+    CheckFieldForEnableDisable(province,"DepSatTrxLeadsApplicant.city");
+    const city = functions.getValue('DepSatTrxLeadsApplicant.city');
+    CheckFieldForEnableDisable(city,"DepSatTrxLeadsApplicant.district");
+    const district = functions.getValue('DepSatTrxLeadsApplicant.district');
+    CheckFieldForEnableDisable(district,"DepSatTrxLeadsApplicant.village");
+}
