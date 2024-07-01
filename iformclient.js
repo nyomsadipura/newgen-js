@@ -327,9 +327,9 @@ function onEventRecievedFromMobile(recievedDataString) {
 
 // Additional code is below
 
-const mandatorySetFunc = (arrField, condition) => {
+const SetStyleFuncWithArrayId = (arrField, setting, condition) => {
     arrField.forEach(element => {
-        functions.setStyle(element, "mandatory", condition);
+        functions.setStyle(element, setting, condition);
     });
 }
 
@@ -355,11 +355,37 @@ function consumentType(){
     functions.setStyle("frame2","visible",condition1);
     functions.setStyle("frame3","visible",condition1);
     functions.setStyle("frame19","visible",condition2);
-    mandatorySetFunc(individualMandatoryField,condition1);
-    mandatorySetFunc(companyMandatoryField,condition2);
+    SetStyleFuncWithArrayId(individualMandatoryField, "mandatory",condition1);
+    SetStyleFuncWithArrayId(companyMandatoryField, "mandatory",condition2);
     functions.updateJSON();
 }
 
+function reviewAndVerificationCheck(){
+    const arrField = ["textbox3", "textbox4", "textbox9", "datepick2", "textbox10",
+        "combo10", "textbox12", "combo12", "combo11", "textbox11", "combo13", "combo14",
+        "combo15", "combo16", "combo17", "combo18", "textbox13", "textbox14",
+        "DepSatTrxLeadsApplicant.companytitle", "DepSatTrxLeadsApplicant.companyname",
+        "DepSatTrxLeadsApplicant.npwpname", "DepSatTrxLeadsApplicant.companyphone",
+        "DepSatTrxLeadsApplicant.npwpregistereddate", "DepSatTrxLeadsApplicant.companyemail",
+        "DepSatTrxLeadsApplicant.npwpno", "DepSatTrxLeadsApplicant.customertype",
+        "DepSatTrxLeadsApplicant.sourceofloads", "DepSatTrxLeadsApplicant.submissiontype",
+        "DepSatTrxLeadsApplicant.branchsales", "DepSatTrxLeadsApplicant.bnipartner",
+        "DepSatTrxLeadsApplicant.loantype", "DepSatTrxLeadsApplicant.loanpurpose",
+        "DepsatTrxLeadsLoan.tenor", "DepsatTrxLeadsLoan.loanamount", "DepSatTrxLeadsApplicant.contractreference",
+        "DepsatTrxLeadsBusiness.economysector", "DepsatTrxLeadsBusiness.economysubsector",
+        "DepSatTrxDataLeads.averagemonthlysales", "DepsatTrxLeadsBusiness.sincewhen",
+        "DepsatTrxLeadsBusiness.address", "DepsatTrxLeadsBusiness.rtrw", "DepsatTrxLeadsBusiness.province",
+        "DepsatTrxLeadsBusiness.city", "DepsatTrxLeadsBusiness.district", "DepsatTrxLeadsBusiness.village",
+        "DepsatTrxLeadsBusiness.postalcode", "DepsatTrxLeadsBusiness.mobilephone", "button1", "button2"
+    ]
+
+    const isReview = functions.getValue('IsReviewWorkstep');
+    SetStyleFuncWithArrayId(arrField, "disable",
+        isReview === "true" || isReview === true ? "true" : "false"
+    );
+    functions.setStyle("frame2", "visible", "false")
+    functions.updateJSON();
+}
 
 /*
 const consumeApi = async (apiUrl) => {
@@ -436,34 +462,60 @@ const sikpCheck = async () => {
 }
 */
 
+function individualDetailCredit(){
+    functions.setStyle("textbox221", "visible","true"); //tempat lahir
+      functions.setStyle("textbox222", "visible","true"); //No KTP
+      functions.setStyle("textbox223", "visible","true"); //alamat both on individual or company
+      functions.setStyle("DepSatTrxLeadsApplicant.dateofbirth","visible","true"); //tanggal lahir 
+      functions.setStyle("combo123", "visible","true"); // jenis kelamin
+      functions.setStyle("combo124", "visible","true"); // agama
+      functions.setStyle("combo125", "visible","true"); // pekerjaan
+      functions.setStyle("combo126", "visible","true"); // status perkawinan
+      functions.setStyle("textbox227", "visible","true"); // nomor handphone
+      functions.setStyle("combo127", "visible","true"); // Kewarganegaraan
+      functions.setStyle("textbox228", "visible","true"); // No Kartu keluarga
+      functions.setStyle("textbox229", "visible","true"); //alamat email
+      functions.setStyle("textbox231","visible","true"); // Nama gadis ibukanduang
+      functions.setStyle("textbox234","visible","true"); // jumlah tanggungan
+      functions.setStyle("frame21","visible","true"); // Frame Informasi Pasangan
 
-function individualDetilCredit(boolean){
-    functions.setStyle("textbox221", "visible", boolean); //tempat lahir
-      functions.setStyle("textbox222", "visible", boolean); //No KTP
-      functions.setStyle("textbox223", "visible", boolean); //alamat both on individual or company
-      functions.setStyle("DepSatTrxLeadsApplicant.dateofbirth","visible",boolean); //tanggal lahir 
-      functions.setStyle("combo123", "visible", boolean); // jenis kelamin
-      functions.setStyle("combo124", "visible", boolean); // agama
-      functions.setStyle("combo125", "visible", boolean); // pekerjaan
-      functions.setStyle("combo126", "visible", boolean); // status perkawinan
-      functions.setStyle("textbox227", "visible", boolean); // nomor handphone
-      functions.setStyle("combo127", "visible", boolean); // Kewarganegaraan
-      functions.setStyle("textbox228", "visible", boolean); // No Kartu keluarga
-      functions.setStyle("textbox229", "visible", boolean); //alamat email
-      functions.setStyle("textbox231","visible",boolean); // Nama gadis ibukanduang
-      functions.setStyle("textbox234","visible",boolean); // jumlah tanggungan
+      functions.setStyle("DepSatTrxLeadsApplicant.companytitle", "visible","false"); // badan usaha
+      functions.setStyle("textbox417", "visible","false"); // nama perusahaan
+      functions.setStyle("textbox410", "visible","false"); // no telpon perusahan
+      functions.setStyle("textbox405", "visible","false"); // no akta pendirian
+      functions.setStyle("combo185", "visible","false"); // status kepemilikan tempat usaha
+      functions.setStyle("combo186", "visible","false"); // sektor ekonomi
+      functions.setStyle("DepSatTrxLeadsApplicant.dateofestablishmentdeed","visible","false"); //tanggal akta pendirian
+      functions.setStyle("combo187", "visible","false"); // sub sector economi
 }
 
-function companyDetailCredit(boolean){
-    functions.setStyle("textbox411", "visible", boolean); // badan usaha
-      functions.setStyle("textbox412", "visible", boolean); // nama perusahaan
-      functions.setStyle("textbox410", "visible", boolean); // no telpon perusahan
-      functions.setStyle("textbox405", "visible", boolean); // no akta pendirian
-      functions.setStyle("combo185", "visible", boolean); // status kepemilikan tempat usaha
-      functions.setStyle("combo186", "visible", boolean); // sektor ekonomi
-      functions.setStyle("DepSatTrxLeadsApplicant.dateofestablishmentdeed","visible",boolean); //tanggal akta pendirian
-      functions.setStyle("combo187", "visible", boolean); // sub sector economi
-  
+
+
+function companyDetailCredit(){
+    functions.setStyle("DepSatTrxLeadsApplicant.companytitle", "visible","true"); // badan usaha
+      functions.setStyle("textbox417", "visible","true"); // nama perusahaan
+      functions.setStyle("textbox410", "visible","true"); // no telpon perusahan
+      functions.setStyle("textbox405", "visible","true"); // no akta pendirian
+      functions.setStyle("combo185", "visible","true"); // status kepemilikan tempat usaha
+      functions.setStyle("combo186", "visible","true"); // sektor ekonomi
+      functions.setStyle("DepSatTrxLeadsApplicant.dateofestablishmentdeed","visible","true"); //tanggal akta pendirian
+      functions.setStyle("combo187", "visible","true"); // sub sector economi
+
+      functions.setStyle("textbox221", "visible","false"); //tempat lahir
+      functions.setStyle("textbox222", "visible","false"); //No KTP
+      functions.setStyle("textbox223", "visible","true"); //alamat both on individual or company
+      functions.setStyle("DepSatTrxLeadsApplicant.dateofbirth","visible","false"); //tanggal lahir 
+      functions.setStyle("combo123", "visible","false"); // jenis kelamin
+      functions.setStyle("combo124", "visible","false"); // agama
+      functions.setStyle("combo125", "visible","false"); // pekerjaan
+      functions.setStyle("combo126", "visible","false"); // status perkawinan
+      functions.setStyle("textbox227", "visible","false"); // nomor handphone
+      functions.setStyle("combo127", "visible","false"); // Kewarganegaraan
+      functions.setStyle("textbox228", "visible","false"); // No Kartu keluarga
+      functions.setStyle("textbox229", "visible","false"); //alamat email
+      functions.setStyle("textbox231","visible","false"); // Nama gadis ibukanduang
+      functions.setStyle("textbox234","visible","false"); // jumlah tanggungan
+      functions.setStyle("frame21","visible","false"); // Frame Informasi Pasangan
 }
 
 
@@ -471,12 +523,10 @@ function hideShowItemDetailCredit() {
     var consumerType = functions.getValue("textbox260");
   
     if (consumerType == "Individual") {
-      companyDetailCredit("false");
-      individualDetilCredit("true");  
+        individualDetilCredit();  
 
     } else if (consumerType == "Company") {
-        companyDetailCredit("true");
-        individualDetilCredit("false");
+        companyDetailCredit();
     }
     functions.updateJSON();
   }
@@ -486,11 +536,13 @@ function approvalDesicion(){
     var approval = functions.getValue("combo183");
 
     if (approval == "Proceed"){
-        functions.setStyle("combo184","enabled","false");    
+        functions.setStyle("combo184","disable","true");    
     }
     else if (approval == "Rejected"){
-        functions.setStyle("combo184","enabled","true");
+        functions.setStyle("combo184","disable","false");
     }
+
+    functions.updateJSON();
 }
 
 
