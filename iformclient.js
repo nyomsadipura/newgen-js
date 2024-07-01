@@ -1018,3 +1018,12 @@ function enableAndDisableAddress() {
     const district = functions.getValue('DepSatTrxLeadsApplicant.district');
     CheckFieldForEnableDisable(district,"DepSatTrxLeadsApplicant.village");
 }
+
+function enableAndDisableAddressindividual() {
+    const province = functions.getValue('DepsatTrxLeadsBusiness.province');
+    CheckFieldForEnableDisable(province,"DepsatTrxLeadsBusiness.city");
+    const city = functions.getValue('DepsatTrxLeadsBusiness.city');
+    CheckFieldForEnableDisable(city,"DepsatTrxLeadsBusiness.district");
+    const district = functions.getValue('DepsatTrxLeadsBusiness.district');
+    CheckFieldForEnableDisable(district,"DepsatTrxLeadsBusiness.village");
+}
