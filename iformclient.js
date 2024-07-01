@@ -389,6 +389,54 @@ function reviewAndVerificationCheck(){
     functions.updateJSON();
 }
 
+const CheckFieldForEnableDisable = (currentPositionCheck, targetDisable) => {
+    console.log(currentPositionCheck);
+    if(currentPositionCheck === "Select") {
+        functions.setStyle(targetDisable, "disable", "true")
+        
+    } else {
+        functions.setStyle(targetDisable, "disable", "false")  
+    }
+    functions.updateJSON()
+}
+
+function enableAndDisableAddress() {
+    const province = functions.getValue('DepSatTrxLeadsApplicant.province');
+    CheckFieldForEnableDisable(province,"DepSatTrxLeadsApplicant.city");
+    const city = functions.getValue('DepSatTrxLeadsApplicant.city');
+    CheckFieldForEnableDisable(city,"DepSatTrxLeadsApplicant.district");
+    const district = functions.getValue('DepSatTrxLeadsApplicant.district');
+    CheckFieldForEnableDisable(district,"DepSatTrxLeadsApplicant.village");
+}
+
+function enableAndDisableAddressindividual() {
+    const province = functions.getValue('DepsatTrxLeadsBusiness.province');
+    CheckFieldForEnableDisable(province,"DepsatTrxLeadsBusiness.city");
+    const city = functions.getValue('DepsatTrxLeadsBusiness.city');
+    CheckFieldForEnableDisable(city,"DepsatTrxLeadsBusiness.district");
+    const district = functions.getValue('DepsatTrxLeadsBusiness.district');
+    CheckFieldForEnableDisable(district,"DepsatTrxLeadsBusiness.village");
+}
+
+function actionDisableRejectReason() {
+    const actionVal = functions.getValue('FirstJrmDecision');
+
+    functions.setStyle("DepsatTrxLeadsActionDetail.rejectreason", "disable",
+        actionVal !== "Reject" ? "true" : "false");
+
+    functions.updateJSON();
+}
+
+function isDigitalSignatureHideButton() {
+    const signatureVal = functions.getValue('DepSatTrxLeadsApplicant.isdigitalsignature');
+
+    functions.setStyle("button3", "disable",
+        (signatureVal !== true || signatureVal !== "true") ? "true" : "false");
+
+    functions.updateJSON();
+}
+
+
 /*
 const consumeApi = async (apiUrl) => {
     await fetch(apiUrl)
@@ -997,33 +1045,4 @@ function getDistrictByCityId() {
 
 function getVillageByDistrictId() {
     functions.executeServerEvent("","villageDropdown","",true);
-}
-
-const CheckFieldForEnableDisable = (currentPositionCheck, targetDisable) => {
-    console.log(currentPositionCheck);
-    if(currentPositionCheck === "Select") {
-        functions.setStyle(targetDisable, "disable", "true")
-        
-    } else {
-        functions.setStyle(targetDisable, "disable", "false")  
-    }
-    functions.updateJSON()
-}
-
-function enableAndDisableAddress() {
-    const province = functions.getValue('DepSatTrxLeadsApplicant.province');
-    CheckFieldForEnableDisable(province,"DepSatTrxLeadsApplicant.city");
-    const city = functions.getValue('DepSatTrxLeadsApplicant.city');
-    CheckFieldForEnableDisable(city,"DepSatTrxLeadsApplicant.district");
-    const district = functions.getValue('DepSatTrxLeadsApplicant.district');
-    CheckFieldForEnableDisable(district,"DepSatTrxLeadsApplicant.village");
-}
-
-function enableAndDisableAddressindividual() {
-    const province = functions.getValue('DepsatTrxLeadsBusiness.province');
-    CheckFieldForEnableDisable(province,"DepsatTrxLeadsBusiness.city");
-    const city = functions.getValue('DepsatTrxLeadsBusiness.city');
-    CheckFieldForEnableDisable(city,"DepsatTrxLeadsBusiness.district");
-    const district = functions.getValue('DepsatTrxLeadsBusiness.district');
-    CheckFieldForEnableDisable(district,"DepsatTrxLeadsBusiness.village");
 }
