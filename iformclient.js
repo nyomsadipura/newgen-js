@@ -381,9 +381,11 @@ function reviewAndVerificationCheck(){
 
     const isReview = functions.getValue('IsReviewWorkstep');
     SetStyleFuncWithArrayId(arrField, "disable",
-        isReview === "true" || isReview === true ? "true" : "false"
-    );
-    functions.setStyle("frame2", "visible", "false")
+        			isReview === "true" || isReview === true ? "true" : "false"
+			);
+    functions.setStyle("frame2", "visible", 
+		       		isReview === "true" || isReview === true ? "false" : "true"
+		      	);
     functions.updateJSON();
 }
 
