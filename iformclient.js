@@ -56,7 +56,86 @@ function customValidation(type) {
 }
 
 function formLoad(){
-    //console.log("formLoad hook..");
+    var isInKCP = functions.getValue("IsInHeadofKCP");
+    var isInPBP = functions.getValue("IsInPBP");
+    var isInBranchManager = functions.getValue("IsInBranchManager");
+    var isInJRM = functions.getValue("IsInJRM");
+
+    var kcpAction = functions.getValue("DepSatTrxHOKCPAction.action");
+    var pbpAction = functions.getValue("DepSatTrxPBPAction.action");
+    var branchManagerAction = functions.getValue("DepSatTrxBranchManagerAction.action");
+    var jrmAction = functions.getValue("DepSatTrxJRMAction.action");
+
+    if (isInKCP == "True") {
+        functions.setStyle("frame70", "visible", "true");//kcp
+        functions.setStyle("frame73", "visible", "false");//pbp
+        functions.setStyle("frame72", "visible", "false");//branch manager
+        functions.setStyle("frame75", "visible", "false");//jrm
+
+        if (kcpAction == "Reject") {
+            functions.setStyle("DepSatTrxHOKCPAction.alasan", "visible", "true");//alasan kcp
+        }else{
+            functions.setStyle("DepSatTrxHOKCPAction.alasan", "visible", "false");//alasan kcp
+        }
+
+        functions.updateJSON();
+    }else if(isInPBP == "True"){
+        functions.setStyle("frame70", "visible", "false");//kcp
+        functions.setStyle("frame73", "visible", "true");//pbp
+        functions.setStyle("frame72", "visible", "false");//branch manager
+        functions.setStyle("frame75", "visible", "false");//jrm
+
+        if (pbpAction == "Reject") {
+            functions.setStyle("DepSatTrxPBPAction.alasan", "visible", "true");//alasan pbp
+        }else{
+            functions.setStyle("DepSatTrxPBPAction.alasan", "visible", "false");//alasan pbp
+        }
+
+        functions.updateJSON();
+    }else if(isInBranchManager == "True"){
+        functions.setStyle("frame70", "visible", "false");//kcp
+        functions.setStyle("frame73", "visible", "false");//pbp
+        functions.setStyle("frame72", "visible", "true");//branch manager
+        functions.setStyle("frame75", "visible", "false");//jrm
+
+        if (branchManagerAction == "Reject") {
+            functions.setStyle("DepSatTrxBranchManagerAction.alasan", "visible", "true");//alasan branch manager
+        }else{
+            functions.setStyle("DepSatTrxBranchManagerAction.alasan", "visible", "false");//alasan branch manager
+        }
+
+        functions.updateJSON();
+    }else if(isInJRM == "True"){
+        functions.setStyle("frame70", "visible", "false");//kcp
+        functions.setStyle("frame73", "visible", "false");//pbp
+        functions.setStyle("frame72", "visible", "false");//branch manager
+        functions.setStyle("frame75", "visible", "true");//jrm
+
+        if (jrmAction == "Reject") {
+            functions.setStyle("DepSatTrxJRMAction.alasan", "visible", "true");//alasan jrm
+        }else{
+            functions.setStyle("DepSatTrxJRMAction.alasan", "visible", "false");//alasan jrm
+        }
+
+        functions.updateJSON();
+    }
+
+    var costumerType = functions.getValue("DepSatTrxLeadsApplicant.customertype");
+
+    if (costumerType == "Individual") {
+        console.log("individual detected");
+        functions.setStyle("frame51", "visible", "true");
+        functions.setStyle("frame52", "visible", "true");
+        functions.setStyle("DepsatTrxLeadsGuarantor.isguarantorneed", "visible", "true");
+        functions.setStyle("frame53", "visible", "false");
+        functions.updateJSON();
+    }else if (costumerType == "Company") {
+        functions.setStyle("frame51", "visible", "false");
+        functions.setStyle("frame52", "visible", "false");
+        functions.setStyle("DepsatTrxLeadsGuarantor.isguarantorneed", "visible", "false");
+        functions.setStyle("frame53", "visible", "true");
+        functions.updateJSON();
+    }
 }
 
 function handleCustomKeyEvent(ev){
@@ -769,7 +848,7 @@ function overrideDataVerificationForm() {
     }
 }
 
-
+/*
 function hideApprovalKCPForm() {
     var costumerType = functions.getValue("DepSatTrxLeadsApplicant.customertype");
 
@@ -788,6 +867,7 @@ function hideApprovalKCPForm() {
         functions.updateJSON();
     }
 }
+    */
 
 
 function getAge(){
@@ -832,6 +912,37 @@ function getAge(){
         functions.updateJSON();
     }
 
+}
+function hideShowAlasan(){
+    var kcpAction = functions.getValue("DepSatTrxHOKCPAction.action");
+    var pbpAction = functions.getValue("DepSatTrxPBPAction.action");
+    var branchManagerAction = functions.getValue("DepSatTrxBranchManagerAction.action");
+    var jrmAction = functions.getValue("DepSatTrxJRMAction.action");
+
+    if (kcpAction == "Reject") {   
+        functions.setStyle("DepSatTrxHOKCPAction.alasan", "visible", "true");//alasan kcp
+    }else{
+        functions.setStyle("DepSatTrxHOKCPAction.alasan", "visible", "false");//alasan kcp
+    }
+
+    if(pbpAction == "Reject"){
+        functions.setStyle("DepSatTrxPBPAction.alasan", "visible", "true");//alasan pbp
+    }else{
+        functions.setStyle("DepSatTrxPBPAction.alasan", "visible", "false");//alasan pbp
+    }
+
+    if(branchManagerAction == "Reject"){
+        functions.setStyle("DepSatTrxBranchManagerAction.alasan", "visible", "true");//alasan branch manager
+    }else{
+        functions.setStyle("DepSatTrxBranchManagerAction.alasan", "visible", "false");//alasan branch manager
+    }
+
+    if(jrmAction == "Reject"){   
+        functions.setStyle("DepSatTrxJRMAction.alasan", "visible", "true");//alasan jrm 
+    }else{
+        functions.setStyle("DepSatTrxJRMAction.alasan", "visible", "false");//alasan jrm
+    }
+    functions.updateJSON();
 }
 
 // custom java
