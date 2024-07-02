@@ -400,7 +400,7 @@ const CheckFieldForEnableDisable = (currentPositionCheck, targetDisable) => {
     functions.updateJSON()
 }
 
-function enableAndDisableAddress() {
+function enableAndDisableAddressConsumentInformation() {
     const province = functions.getValue('DepSatTrxLeadsApplicant.province');
     CheckFieldForEnableDisable(province,"DepSatTrxLeadsApplicant.city");
     const city = functions.getValue('DepSatTrxLeadsApplicant.city');
@@ -409,7 +409,7 @@ function enableAndDisableAddress() {
     CheckFieldForEnableDisable(district,"DepSatTrxLeadsApplicant.village");
 }
 
-function enableAndDisableAddressindividual() {
+function enableAndDisableAddressBusineesInformation() {
     const province = functions.getValue('DepsatTrxLeadsBusiness.province');
     CheckFieldForEnableDisable(province,"DepsatTrxLeadsBusiness.city");
     const city = functions.getValue('DepsatTrxLeadsBusiness.city');
@@ -434,6 +434,43 @@ function isDigitalSignatureHideButton() {
         (signatureVal !== true || signatureVal !== "true") ? "true" : "false");
 
     functions.updateJSON();
+}
+
+
+// custom java (consument information)
+
+function getCityByProvinceIdConsumentInformation() {
+    functions.executeServerEvent("","cityDropdown","",true);
+    enableAndDisableAddressConsumentInformation();
+}
+
+function getDistrictByCityIdConsumentInformation() {
+    functions.executeServerEvent("","districtDropdown","",true);
+    enableAndDisableAddressConsumentInformation();
+    enableAndDisableAddressConsumentInformation();
+}
+
+function getVillageByDistrictIdConsumentInformation() {
+    functions.executeServerEvent("","villageDropdown","",true);
+    enableAndDisableAddressConsumentInformation();
+}
+
+ 
+// custom java (Businees information)
+
+function getCityByProvinceIdBusineesInformation() {
+    functions.executeServerEvent("","cityDropdown","",true);
+    enableAndDisableAddressBusineesInformation()
+}
+
+function getDistrictByCityIdBusineesInformation() {
+    functions.executeServerEvent("","districtDropdown","",true);
+    enableAndDisableAddressBusineesInformation()
+}
+
+function getVillageByDistrictIdBusineesInformation() {
+    functions.executeServerEvent("","villageDropdown","",true);
+    enableAndDisableAddressBusineesInformation()
 }
 
 
@@ -1032,17 +1069,4 @@ function hideShowAlasan(){
     functions.updateJSON();
 }
 
-
-// custom java
-
-function getCityByProvinceId() {
-    functions.executeServerEvent("","cityDropdown","",true);
-}
-
-function getDistrictByCityId() {
-    functions.executeServerEvent("","districtDropdown","",true);
-}
-
-function getVillageByDistrictId() {
-    functions.executeServerEvent("","villageDropdown","",true);
-}
+// kalo nyariin custom java tak bawa ke atas, ngikut code firstentry yang lain
