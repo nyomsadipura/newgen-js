@@ -922,28 +922,26 @@ function overrideDataVerificationForm() {
     }
 }
 
-function hideApprovalKCPForm() {
+function ApprovalKCPForm() {
+    // hide show data verification form based on individual or company
     var costumerType = functions.getValue("DepSatTrxLeadsApplicant.customertype");
 
     if (costumerType == "Individual") {
         console.log("individual detected");
-        functions.setStyle("frame51", "visible", "true");
-        functions.setStyle("frame52", "visible", "true");
+        functions.setStyle("frame81", "visible", "true");
+        functions.setStyle("frame82", "visible", "true");
         functions.setStyle("DepsatTrxLeadsGuarantor.isguarantorneed", "visible", "true");
-        functions.setStyle("frame53", "visible", "false");
+        functions.setStyle("frame83", "visible", "false");
         functions.updateJSON();
     }else if (costumerType == "Company") {
-        functions.setStyle("frame51", "visible", "false");
-        functions.setStyle("frame52", "visible", "false");
+        functions.setStyle("frame81", "visible", "false");
+        functions.setStyle("frame82", "visible", "false");
         functions.setStyle("DepsatTrxLeadsGuarantor.isguarantorneed", "visible", "false");
-        functions.setStyle("frame53", "visible", "true");
+        functions.setStyle("frame83", "visible", "true");
         functions.updateJSON();
     }
-}
 
-
-function getAge(){
-    var costumerType = functions.getValue("DepSatTrxLeadsApplicant.customertype");
+    // get age based on date of birth
 
     if (costumerType == "Individual") {
         functions.setStyle("DepsatTrxLeadsGuarantor.placeofbirth", "visible", "false");
@@ -984,72 +982,42 @@ function getAge(){
         functions.updateJSON();
     }
 
-}
-
-function swapSectionKeputusan(){
+    //swap section keputusan berdasarkan otorisasi keputusan
     var isInKCP = functions.getValue("IsInHeadofKCP");
     var isInPBP = functions.getValue("IsInPBP");
     var isInBranchManager = functions.getValue("IsInBranchManager");
     var isInJRM = functions.getValue("IsInJRM");
 
-    var kcpAction = functions.getValue("DepSatTrxHOKCPAction.action");
-    var pbpAction = functions.getValue("DepSatTrxPBPAction.action");
-    var branchManagerAction = functions.getValue("DepSatTrxBranchManagerAction.action");
-    var jrmAction = functions.getValue("DepSatTrxJRMAction.action");
-
     if (isInKCP == "True") {
-        functions.setStyle("frame70", "visible", "true");//kcp
-        functions.setStyle("frame73", "visible", "false");//pbp
-        functions.setStyle("frame72", "visible", "false");//branch manager
-        functions.setStyle("frame75", "visible", "false");//jrm
-
-        if (kcpAction == "Reject") {
-            functions.setStyle("DepSatTrxHOKCPAction.alasan", "visible", "true");//alasan kcp
-        }else{
-            functions.setStyle("DepSatTrxHOKCPAction.alasan", "visible", "false");//alasan kcp
-        }
+        functions.setStyle("frame98", "visible", "true");//kcp
+        functions.setStyle("frame99", "visible", "false");//pbp
+        functions.setStyle("frame100", "visible", "false");//branch manager
+        functions.setStyle("frame101", "visible", "false");//jrm
 
         functions.updateJSON();
     }else if(isInPBP == "True"){
-        functions.setStyle("frame70", "visible", "false");//kcp
-        functions.setStyle("frame73", "visible", "true");//pbp
-        functions.setStyle("frame72", "visible", "false");//branch manager
-        functions.setStyle("frame75", "visible", "false");//jrm
-
-        if (pbpAction == "Reject") {
-            functions.setStyle("DepSatTrxPBPAction.alasan", "visible", "true");//alasan pbp
-        }else{
-            functions.setStyle("DepSatTrxPBPAction.alasan", "visible", "false");//alasan pbp
-        }
+        functions.setStyle("frame98", "visible", "false");//kcp
+        functions.setStyle("frame99", "visible", "true");//pbp
+        functions.setStyle("frame100", "visible", "false");//branch manager
+        functions.setStyle("frame101", "visible", "false");//jrm
 
         functions.updateJSON();
     }else if(isInBranchManager == "True"){
-        functions.setStyle("frame70", "visible", "false");//kcp
-        functions.setStyle("frame73", "visible", "false");//pbp
-        functions.setStyle("frame72", "visible", "true");//branch manager
-        functions.setStyle("frame75", "visible", "false");//jrm
-
-        if (branchManagerAction == "Reject") {
-            functions.setStyle("DepSatTrxBranchManagerAction.alasan", "visible", "true");//alasan branch manager
-        }else{
-            functions.setStyle("DepSatTrxBranchManagerAction.alasan", "visible", "false");//alasan branch manager
-        }
+        functions.setStyle("frame98", "visible", "false");//kcp
+        functions.setStyle("frame99", "visible", "false");//pbp
+        functions.setStyle("frame100", "visible", "true");//branch manager
+        functions.setStyle("frame101", "visible", "false");//jrm
 
         functions.updateJSON();
     }else if(isInJRM == "True"){
-        functions.setStyle("frame70", "visible", "false");//kcp
-        functions.setStyle("frame73", "visible", "false");//pbp
-        functions.setStyle("frame72", "visible", "false");//branch manager
-        functions.setStyle("frame75", "visible", "true");//jrm
-
-        if (jrmAction == "Reject") {
-            functions.setStyle("DepSatTrxJRMAction.alasan", "visible", "true");//alasan jrm
-        }else{
-            functions.setStyle("DepSatTrxJRMAction.alasan", "visible", "false");//alasan jrm
-        }
+        functions.setStyle("frame98", "visible", "false");//kcp
+        functions.setStyle("frame99", "visible", "false");//pbp
+        functions.setStyle("frame100", "visible", "false");//branch manager
+        functions.setStyle("frame101", "visible", "true");//jrm
 
         functions.updateJSON();
     }
+
 }
 
 function hideShowAlasan(){
