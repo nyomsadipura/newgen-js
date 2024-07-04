@@ -645,6 +645,7 @@ function maritalStatusDetail(){
     {
         functions.setStyle("frame21","visible","false");
     }
+    functions.updateJSON();
 }
 
 
