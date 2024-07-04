@@ -610,7 +610,7 @@ function hideShowItemDetailCredit() {
     var consumerType = functions.getValue("textbox260");
   
     if (consumerType == "Individual") {
-        individualDetilCredit();  
+        individualDetailCredit();  
 
     } else if (consumerType == "Company") {
         companyDetailCredit();
