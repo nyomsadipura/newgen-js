@@ -388,17 +388,14 @@ function reviewAndVerificationCheck(){
 		       		isReview === "true" || isReview === true ? "false" : "true"
 		      	);
 
+    consumentType();
     functions.updateJSON();
 }
 
 const CheckFieldForEnableDisable = (currentPositionCheck, targetDisable) => {
-    console.log(currentPositionCheck);
-    if(currentPositionCheck === "Select") {
-        functions.setStyle(targetDisable, "disable", "true")
-        
-    } else {
-        functions.setStyle(targetDisable, "disable", "false")  
-    }
+    functions.setStyle(targetDisable, "disable",
+        currentPositionCheck === "Select" ? "true" : "false");
+    
     functions.updateJSON()
 }
 
