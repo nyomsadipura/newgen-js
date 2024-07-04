@@ -633,6 +633,19 @@ function approvalDesicion(){
 }
 
 
+function maritalStatusDetail(){
+    var marital = functions.getValue("combo126");
+
+    if (marital == "Menikah"){
+        functions.setStyle("frame21","visible","true");
+    }
+    else
+    {
+        functions.setStyle("frame21","visible","false");
+    }
+}
+
+
 function customerType(){
     const type = functions.getValue("DepSatTrxLeadsApplicant.customertype");
     const isCompany = type === "company";
