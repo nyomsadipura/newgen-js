@@ -360,10 +360,6 @@ function consumentType(){
     functions.updateJSON();
 }
 
-const getUsernameAndInputValueForBranchName = () => {
-    const username = functions.getWorkItemData("username");
-    functions.executeGetBranchName(username);
-}
 
 function reviewAndVerificationCheck(){
     const arrField = ["textbox3", "textbox4", "textbox9", "datepick2", "textbox10",
@@ -392,7 +388,6 @@ function reviewAndVerificationCheck(){
 		       		isReview === "true" || isReview === true ? "false" : "true"
 		      	);
 
-    getUsernameAndInputValueForBranchName();
     functions.updateJSON();
 }
 
