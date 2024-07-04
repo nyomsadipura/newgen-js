@@ -646,9 +646,20 @@ function maritalStatusDetail(){
 }
 
 
+function gurantorCheckBox(){
+    const guarantorCB = functions.getValue("DepsatTrxLeadsGuarantor.isguarantorneed");
+    if(guarantorCB){
+        functions.setStyle("frame24","visible","true");
+    }
+    else{
+        functions.setStyle("frame24","visible","false");
+    }
+    functions.updateJSON();
+}
+
 function customerType(){
     const type = functions.getValue("DepSatTrxLeadsApplicant.customertype");
-    const isCompany = type === "company";
+    const isCompany = type === "Company";
     const condition1 = isCompany ? "false":"true";
     const condition2 = isCompany ? "true":"false";
 
