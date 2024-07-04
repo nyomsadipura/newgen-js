@@ -761,6 +761,32 @@ function documentPrinting() {
     functions.updateJSON();
 }
 
+function disburseAndACM(){
+    const valCustType = functions.getValue("DepSatTrxLeadsApplicant.customertype")
+    if(valCustType === "Individual"){
+        functions.setStyle("frame34","visible","false");
+        functions.setStyle("frame35","visible","true");
+        functions.setStyle("frame3","visible","true");
+    } else {
+        functions.setStyle("frame34","visible","true");
+        functions.setStyle("frame35","visible","false");
+        functions.setStyle("frame3","visible","false");
+    }  
+    let getBirthDate = functions.getValue('DepSatTrxLeadsApplicant.dateofbirth');
+    functions.setValues({
+        'textbox5' : getAge(getBirthDate)
+    });
+    let getSpouseBirthDate = functions.getValue('DepSatTrxLeadsApplicant.spousedob');
+    functions.setValues({
+        'textbox142' : getAge(getSpouseBirthDate)
+    });
+    let getGuarantorBirthDate = functions.getValue('DepSatTrxLeadsGuarantor.dateofbirth');
+    functions.setValues({
+        'textbox24' : getAge(getGuarantorBirthDate)
+    });
+
+    functions.updateJSON();
+}
 // form 10
 function AgreementVerification() {
     // hide show individual or company
@@ -798,47 +824,6 @@ function AgreementVerification() {
 }
 
 
-function disburseCustomerType(){
-    const valCustType = functions.getValue("DepSatTrxLeadsApplicant.customertype")
-    if(valCustType === "Individual"){
-        functions.setStyle("frame34","visible","false");
-        functions.setStyle("frame35","visible","true");
-        functions.setStyle("frame3","visible","true");
-    } else {
-        functions.setStyle("frame34","visible","true");
-        functions.setStyle("frame35","visible","false");
-        functions.setStyle("frame3","visible","false");
-    }
-    functions.updateJSON()
-}
-function disburseGetAgeCustomer(){
-    let getBirthDate = functions.getValue('DepSatTrxLeadsApplicant.dateofbirth');
-    
-    functions.setValues({
-        'textbox5' : getAge(getBirthDate)
-    });
-
-    functions.updateJSON();
-}
-
-function disburseGetAgeSpouse(){
-    let getBirthDate = functions.getValue('DepSatTrxLeadsApplicant.spousedob');
-    
-    functions.setValues({
-        'textbox142' : getAge(getBirthDate)
-    });
-
-    functions.updateJSON();
-}
-function disburseGetAgeGuarantor(){
-    let getBirthDate = functions.getValue('DepSatTrxLeadsGuarantor.dateofbirth');
-    
-    functions.setValues({
-        'textbox24' : getAge(getBirthDate)
-    });
-
-    functions.updateJSON();
-}
 
 function individualDataVerificationForm(boolean){
     console.log("individual func masuk");
