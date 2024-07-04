@@ -627,10 +627,10 @@ function approvalDesicion(){
     if (approval == "Proceed"){
         functions.setStyle("combo184","disable","true");    
     }
-    else if (approval == "Rejected"){
+    else
+    {
         functions.setStyle("combo184","disable","false");
     }
-
     functions.updateJSON();
 }
 
