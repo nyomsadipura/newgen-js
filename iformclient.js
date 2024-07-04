@@ -360,6 +360,7 @@ function consumentType(){
     functions.updateJSON();
 }
 
+
 function reviewAndVerificationCheck(){
     const arrField = ["textbox3", "textbox4", "textbox9", "datepick2", "textbox10",
         "combo10", "textbox12", "combo12", "combo11", "textbox11", "combo13", "combo14",
@@ -386,6 +387,7 @@ function reviewAndVerificationCheck(){
     functions.setStyle("frame2", "visible", 
 		       		isReview === "true" || isReview === true ? "false" : "true"
 		      	);
+
     functions.updateJSON();
 }
 
