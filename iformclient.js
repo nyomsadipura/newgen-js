@@ -714,6 +714,15 @@ function isCollateralCheck(){
     functions.updateJSON();
 }
 
+function spouseCheck(){
+    const maritalStatus = functions.getValue("DepSatTrxLeadsApplicant.maritalstatus");
+    const isMarried = maritalStatus === "Menikah";
+    const condition1 = isMarried ? "true":"false";
+
+    functions.setStyle("frame9","visible",condition1);
+    functions.updateJSON();
+}
+
 
 
 function getAge(getBirthDate) {
