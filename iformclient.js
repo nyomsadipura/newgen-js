@@ -427,10 +427,10 @@ function actionDisableRejectReason() {
 }
 
 function isDigitalSignatureHideButton() {
-    const signatureVal = functions.getValue('DepSatTrxLeadsApplicant.isdigitalsignature');
+    const signatureVal = functions.getValue('IsDigitalSignatureFirst');
 
     functions.setStyle("button3", "disable",
-        (signatureVal !== true || signatureVal !== "true") ? "true" : "false");
+        signatureVal === true ? "true" : "false");
 
     functions.updateJSON();
 }
@@ -445,7 +445,6 @@ function getCityByProvinceIdConsumentInformation() {
 
 function getDistrictByCityIdConsumentInformation() {
     functions.executeServerEvent("","districtDropdown","",true);
-    enableAndDisableAddressConsumentInformation();
     enableAndDisableAddressConsumentInformation();
 }
 
