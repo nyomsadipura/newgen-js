@@ -879,6 +879,15 @@ function hideShowDataVerificationForm() {
         individualDataVerificationForm("false");
     }
     functions.updateJSON();
+
+    var isGuarantorNeed = functions.getValue("DepsatTrxLeadsGuarantor.isguarantorneed");
+    if(isGuarantorNeed == true){
+        functions.setStyle("frame9", "visible", "true");
+    }else{
+        functions.setStyle("frame9", "visible", "false");
+    }
+    
+    functions.updateJSON();
  }
 
 function overrideDataVerificationForm() {
@@ -886,12 +895,43 @@ function overrideDataVerificationForm() {
     if (override=="Yes") {
         functions.setStyle("frame1", "disable", "false");
         functions.setStyle("combo1", "disable", "false");
+        functions.setStyle("frame25", "disable", "false");
+        functions.updateJSON();
+        functions.setStyle("frame25", "disable", "false");
         functions.updateJSON();
     }else if(override=="No"){
         functions.setStyle("frame1", "disable", "true");
         functions.setStyle("combo1", "disable", "false");
+        functions.setStyle("frame25", "disable", "false");
+        functions.updateJSON();
+        functions.setStyle("frame25", "disable", "false");
         functions.updateJSON();
     }
+    functions.setStyle("combo1", "disable", "false");
+    functions.setStyle("frame25", "disable", "false");
+    functions.updateJSON();
+}
+
+function hideShowAlasanDataVerificationForm() {
+    var action = functions.getValue("SecondPjrmDecision");
+
+    if (action == "Reject") {   
+        functions.setStyle("DepsatTrxLeadsActionDetail.rejectreason", "visible", "true");//alasan kcp
+    }else{
+        functions.setStyle("DepsatTrxLeadsActionDetail.rejectreason", "visible", "false");//alasan kcp
+    }
+    functions.updateJSON();
+}
+
+function hideShowPenjaminDataVerificationForm() {
+    var isGuarantorNeed = functions.getValue("DepsatTrxLeadsGuarantor.isguarantorneed");
+    if(isGuarantorNeed == true){
+        functions.setStyle("frame9", "visible", "true");
+    }else{
+        functions.setStyle("frame9", "visible", "false");
+    }
+    
+    functions.updateJSON();
 }
 
 function ApprovalKCPForm() {
@@ -960,28 +1000,28 @@ function ApprovalKCPForm() {
     var isInBranchManager = functions.getValue("IsInBranchManager");
     var isInJRM = functions.getValue("IsInJRM");
 
-    if (isInKCP == "True") {
+    if (isInKCP == "true") {
         functions.setStyle("frame98", "visible", "true");//kcp
         functions.setStyle("frame99", "visible", "false");//pbp
         functions.setStyle("frame100", "visible", "false");//branch manager
         functions.setStyle("frame101", "visible", "false");//jrm
 
         functions.updateJSON();
-    }else if(isInPBP == "True"){
+    }else if(isInPBP == "true"){
         functions.setStyle("frame98", "visible", "false");//kcp
         functions.setStyle("frame99", "visible", "true");//pbp
         functions.setStyle("frame100", "visible", "false");//branch manager
         functions.setStyle("frame101", "visible", "false");//jrm
 
         functions.updateJSON();
-    }else if(isInBranchManager == "True"){
+    }else if(isInBranchManager == "true"){
         functions.setStyle("frame98", "visible", "false");//kcp
         functions.setStyle("frame99", "visible", "false");//pbp
         functions.setStyle("frame100", "visible", "true");//branch manager
         functions.setStyle("frame101", "visible", "false");//jrm
 
         functions.updateJSON();
-    }else if(isInJRM == "True"){
+    }else if(isInJRM == "true"){
         functions.setStyle("frame98", "visible", "false");//kcp
         functions.setStyle("frame99", "visible", "false");//pbp
         functions.setStyle("frame100", "visible", "false");//branch manager
@@ -989,6 +1029,29 @@ function ApprovalKCPForm() {
 
         functions.updateJSON();
     }
+
+    //hide or show penjamin approval form onload
+
+    var isGuarantorNeed = functions.getValue("DepsatTrxLeadsGuarantor.isguarantorneed");
+
+    if(isGuarantorNeed == true){
+        functions.setStyle("frame84", "visible", "true");
+    }else{
+        functions.setStyle("frame84", "visible", "false");
+    }
+    functions.updateJSON();
+
+}
+
+function hideShowPenjaminApprovalForm(){
+    var isGuarantorNeed = functions.getValue("DepsatTrxLeadsGuarantor.isguarantorneed");
+
+    if(isGuarantorNeed == true){
+        functions.setStyle("frame84", "visible", "true");
+    }else{
+        functions.setStyle("frame84", "visible", "false");
+    }
+    functions.updateJSON();
 
 }
 
