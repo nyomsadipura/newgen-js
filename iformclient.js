@@ -446,7 +446,6 @@ function getCityByProvinceIdConsumentInformation() {
 function getDistrictByCityIdConsumentInformation() {
     functions.executeServerEvent("","districtDropdown","",true);
     enableAndDisableAddressConsumentInformation();
-    enableAndDisableAddressConsumentInformation();
 }
 
 function getVillageByDistrictIdConsumentInformation() {
