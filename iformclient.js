@@ -780,29 +780,18 @@ function documentPrinting() {
 
 function disburseAndACM(){
     const valCustType = functions.getValue("DepSatTrxLeadsApplicant.customertype")
-    if(valCustType === "Individual"){
-        functions.setStyle("frame34","visible","false");
-        functions.setStyle("frame35","visible","true");
-        functions.setStyle("frame3","visible","true");
-    } else {
-        functions.setStyle("frame34","visible","true");
-        functions.setStyle("frame35","visible","false");
-        functions.setStyle("frame3","visible","false");
-    }  
-    let getBirthDate = functions.getValue('DepSatTrxLeadsApplicant.dateofbirth');
-    functions.setValues({
-        'textbox5' : getAge(getBirthDate)
-    });
-    let getSpouseBirthDate = functions.getValue('DepSatTrxLeadsApplicant.spousedob');
-    functions.setValues({
-        'textbox142' : getAge(getSpouseBirthDate)
-    });
-    let getGuarantorBirthDate = functions.getValue('DepSatTrxLeadsGuarantor.dateofbirth');
-    functions.setValues({
-        'textbox24' : getAge(getGuarantorBirthDate)
-    });
+    const conditionType = valCustType === "Individual" ? "true" : "false";
+    functions.setStyle("frame3","visible",conditionType);
+
+    const maritalStatus = functions.getValue("DepSatTrxLeadsApplicant.maritalstatus");
+    let conditionSpouse = maritalStatus === "Menikah" ? "true" : "false";
+    functions.setStyle("frame35","visible",conditionSpouse);
+
+    let conditionCompany = conditionType === "true" ? "false":"true";
+    functions.setStyle("frame34","visible",conditionCompany);
 
     functions.updateJSON();
+
 }
 // form 10
 function AgreementVerification() {
