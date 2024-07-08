@@ -439,17 +439,17 @@ function isDigitalSignatureHideButton() {
 // custom java (consument information)
 
 function getCityByProvinceIdConsumentInformation() {
-    functions.executeServerEvent("","cityDropdown","",true);
+    functions.executeServerEvent("informasiKonsumen","cityDropdown","",true);
     enableAndDisableAddressConsumentInformation();
 }
 
 function getDistrictByCityIdConsumentInformation() {
-    functions.executeServerEvent("","districtDropdown","",true);
+    functions.executeServerEvent("informasiKonsumen","districtDropdown","",true);
     enableAndDisableAddressConsumentInformation();
 }
 
 function getVillageByDistrictIdConsumentInformation() {
-    functions.executeServerEvent("","villageDropdown","",true);
+    functions.executeServerEvent("informasiKonsumen","villageDropdown","",true);
     enableAndDisableAddressConsumentInformation();
 }
 
@@ -457,18 +457,23 @@ function getVillageByDistrictIdConsumentInformation() {
 // custom java (Businees information)
 
 function getCityByProvinceIdBusineesInformation() {
-    functions.executeServerEvent("","cityDropdown","",true);
+    functions.executeServerEvent("informasiUsaha","cityDropdown","",true);
     enableAndDisableAddressBusineesInformation()
 }
 
 function getDistrictByCityIdBusineesInformation() {
-    functions.executeServerEvent("","districtDropdown","",true);
+    functions.executeServerEvent("informasiUsaha","districtDropdown","",true);
     enableAndDisableAddressBusineesInformation()
 }
 
 function getVillageByDistrictIdBusineesInformation() {
-    functions.executeServerEvent("","villageDropdown","",true);
+    functions.executeServerEvent("informasiUsaha","villageDropdown","",true);
     enableAndDisableAddressBusineesInformation()
+}
+
+// get branch name 
+function getBranchNameByUsername(){
+    functions.executeServerEvent("","","getBranchName",true);
 }
 
 
