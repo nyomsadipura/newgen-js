@@ -393,10 +393,6 @@ function reviewAndVerificationCheck(){
 }
 
 const CheckFieldForEnableDisable = (currentPositionCheck, targetDisable) => {
-    if(currentPositionCheck === "Select"){
-        functions.clearComboOptions(targetDisable);
-    }
-
     functions.setStyle(targetDisable, "disable",
         currentPositionCheck === "Select" ? "true" : "false");
     
@@ -483,8 +479,7 @@ function getVillageByDistrictIdBusineesInformation() {
 
 // get branch name 
 function getBranchNameByUsername(){
-    const username = functions.getWorkItemData('username');
-    const res = functions.executeServerEvent(username,"","getBranchName",true);
+    const res = functions.executeServerEvent("","","getBranchName",true);
     functions.setValue("DepSatTrxLeadsApplicant.branchname", res);
 }
 
@@ -673,7 +668,7 @@ function gurantorCheckBox(){
     functions.updateJSON();
 }
 
-function actionDisableRejectReason() {
+function actionDisableRejectReasonForm5() {
     const actionVal = functions.getValue('SecondJrmDecision');
 
     functions.setStyle("combo51", "disable",
