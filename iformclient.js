@@ -668,6 +668,15 @@ function gurantorCheckBox(){
     functions.updateJSON();
 }
 
+function actionDisableRejectReasonForm5() {
+    const actionVal = functions.getValue('SecondJrmDecision');
+
+    functions.setStyle("combo51", "disable",
+        actionVal !== "Reject" ? "true" : "false");
+
+    functions.updateJSON();
+}
+
 function customerType(){
     const type = functions.getValue("DepSatTrxLeadsApplicant.customertype");
     const isCompany = type === "Company";
