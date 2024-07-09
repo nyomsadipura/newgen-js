@@ -840,7 +840,31 @@ function AgreementVerification() {
     functions.updateJSON();
 }
 
+function actionDisableDP()
+{
+    let getValueAction = functions.getValue('DepsatTrxLeadsActionDetail.statusleads');
 
+    if (getValueAction == 'Reject') {
+        functions.setStyle('DepsatTrxLeadsActionDetail.rejectreason', "disable", false);
+    } else {
+        functions.setStyle('DepsatTrxLeadsActionDetail.rejectreason', "disable", true);
+    }
+
+    functions.updateJSON();
+}
+
+function actionDisableAV()
+{
+    let getValueAction = functions.getValue('ThirdPJRMDecision');
+
+    if (getValueAction == 'Reject') {
+        functions.setStyle('DepsatTrxLeadsActionDetail.rejectreason', "disable", false);
+    } else {
+        functions.setStyle('DepsatTrxLeadsActionDetail.rejectreason', "disable", true);
+    }
+
+    functions.updateJSON();
+}
 
 function individualDataVerificationForm(boolean){
     console.log("individual func masuk");
