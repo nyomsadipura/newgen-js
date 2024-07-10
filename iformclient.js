@@ -702,6 +702,7 @@ function customerType(){
 
 function copyDomicileAddress(){
     const addDom = functions.getValue("DepSatTrxLeadsApplicant.address");
+    const provDom = functions.getValue("DepSatTrxLeadsApplicant.province");
     const citDom = functions.getValue("DepSatTrxLeadsApplicant.city");
     const vilDom = functions.getValue("DepSatTrxLeadsApplicant.village");
     const posDom = functions.getValue("DepSatTrxLeadsApplicant.postalcode");
@@ -709,6 +710,7 @@ function copyDomicileAddress(){
     const disDom = functions.getValue("DepSatTrxLeadsApplicant.district");
 
     functions.setValue("DepSatTrxLeadsApplicant.addressdomicile",addDom);
+    functions.setValue("DepSatTrxLeadsApplicant.provincedomicile",provDom);
     functions.setValue("DepSatTrxLeadsApplicant.citydomicile",citDom);
     functions.setValue("DepSatTrxLeadsApplicant.villagedomicile",vilDom);
     functions.setValue("DepSatTrxLeadsApplicant.postalcodedomicile",posDom);
