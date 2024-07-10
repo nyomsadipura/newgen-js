@@ -393,6 +393,10 @@ function reviewAndVerificationCheck(){
 }
 
 const CheckFieldForEnableDisable = (currentPositionCheck, targetDisable) => {
+    if(currentPositionCheck === "Select"){
+        functions.clearComboOptions(targetDisable);
+    }
+    
     functions.setStyle(targetDisable, "disable",
         currentPositionCheck === "Select" ? "true" : "false");
     
@@ -479,7 +483,8 @@ function getVillageByDistrictIdBusineesInformation() {
 
 // get branch name 
 function getBranchNameByUsername(){
-    const res = functions.executeServerEvent("","","getBranchName",true);
+    const username = functions.getWorkItemData('username');
+    const res = functions.executeServerEvent(username,"","getBranchName",true);
     functions.setValue("DepSatTrxLeadsApplicant.branchname", res);
 }
 
