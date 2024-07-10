@@ -451,14 +451,12 @@ function getCityByProvinceIdConsumentInformation() {
 function getDistrictByCityIdConsumentInformation() {
     functions.clearComboOptions('DepSatTrxLeadsApplicant.district');
     functions.executeServerEvent("DepSatTrxLeadsApplicant.city,DepSatTrxLeadsApplicant.district","cityDropdown","",true);
-    functions.executeServerEvent("informasiKonsumen","districtDropdown","",true);
     enableAndDisableAddressConsumentInformation();
 }
 
 function getVillageByDistrictIdConsumentInformation() {
     functions.clearComboOptions('DepSatTrxLeadsApplicant.village');
     functions.executeServerEvent("DepSatTrxLeadsApplicant.district,DepSatTrxLeadsApplicant.village","cityDropdown","",true);
-    functions.executeServerEvent("informasiKonsumen","villageDropdown","",true);
     enableAndDisableAddressConsumentInformation();
 }
 
