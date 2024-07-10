@@ -444,40 +444,42 @@ function isDigitalSignatureHideButton() {
 
 function getCityByProvinceIdConsumentInformation() {
     functions.clearComboOptions('DepSatTrxLeadsApplicant.city');
-    functions.executeServerEvent("informasiKonsumen","cityDropdown","",true);
+    functions.executeServerEvent("DepSatTrxLeadsApplicant.province,DepSatTrxLeadsApplicant.city","cityDropdown","",true);
     enableAndDisableAddressConsumentInformation();
 }
 
 function getDistrictByCityIdConsumentInformation() {
     functions.clearComboOptions('DepSatTrxLeadsApplicant.district');
+    functions.executeServerEvent("DepSatTrxLeadsApplicant.city,DepSatTrxLeadsApplicant.district","cityDropdown","",true);
     functions.executeServerEvent("informasiKonsumen","districtDropdown","",true);
     enableAndDisableAddressConsumentInformation();
 }
 
 function getVillageByDistrictIdConsumentInformation() {
     functions.clearComboOptions('DepSatTrxLeadsApplicant.village');
+    functions.executeServerEvent("DepSatTrxLeadsApplicant.district,DepSatTrxLeadsApplicant.village","cityDropdown","",true);
     functions.executeServerEvent("informasiKonsumen","villageDropdown","",true);
     enableAndDisableAddressConsumentInformation();
 }
 
- 
+
 // custom java (Businees information)
 
 function getCityByProvinceIdBusineesInformation() {
     functions.clearComboOptions('DepsatTrxLeadsBusiness.city');
-    functions.executeServerEvent("informasiUsaha","cityDropdown","",true);
+    functions.executeServerEvent("DepsatTrxLeadsBusiness.province,DepsatTrxLeadsBusiness.city","cityDropdown","",true);
     enableAndDisableAddressBusineesInformation()
 }
 
 function getDistrictByCityIdBusineesInformation() {
     functions.clearComboOptions('DepsatTrxLeadsBusiness.district');
-    functions.executeServerEvent("informasiUsaha","districtDropdown","",true);
+    functions.executeServerEvent("DepsatTrxLeadsBusiness.city,DepsatTrxLeadsBusiness.district","cityDropdown","",true);
     enableAndDisableAddressBusineesInformation()
 }
 
 function getVillageByDistrictIdBusineesInformation() {
     functions.clearComboOptions('DepsatTrxLeadsBusiness.village');
-    functions.executeServerEvent("informasiUsaha","villageDropdown","",true);
+    functions.executeServerEvent("DepsatTrxLeadsBusiness.district,DepsatTrxLeadsBusiness.village","cityDropdown","",true);
     enableAndDisableAddressBusineesInformation()
 }
 
