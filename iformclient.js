@@ -421,6 +421,15 @@ function enableAndDisableAddressBusineesInformation() {
     CheckFieldForEnableDisable(district,"DepsatTrxLeadsBusiness.village");
 }
 
+function enableAndDisableAddressGuarantorInformation() {
+    const province = functions.getValue('DepsatTrxLeadsGuarantor.province');
+    CheckFieldForEnableDisable(province,"DepsatTrxLeadsGuarantor.city");
+    const city = functions.getValue('DepsatTrxLeadsGuarantor.city');
+    CheckFieldForEnableDisable(city,"DepsatTrxLeadsGuarantor.district");
+    const district = functions.getValue('DepsatTrxLeadsGuarantor.district');
+    CheckFieldForEnableDisable(district,"DepsatTrxLeadsGuarantor.village");
+}
+
 function actionDisableRejectReason() {
     const actionVal = functions.getValue('FirstJrmDecision');
 
@@ -479,6 +488,27 @@ function getVillageByDistrictIdBusineesInformation() {
     functions.clearComboOptions('DepsatTrxLeadsBusiness.village');
     functions.executeServerEvent("DepsatTrxLeadsBusiness.district,DepsatTrxLeadsBusiness.village","cityDropdown","",true);
     enableAndDisableAddressBusineesInformation()
+}
+
+
+// custom java (Guarantor information)
+
+function getCityByProvinceIdGuarantorInformation() {
+    functions.clearComboOptions('DepsatTrxLeadsBusiness.city');
+    functions.executeServerEvent("DepsatTrxLeadsGuarantor.province,DepsatTrxLeadsGuarantor.city","cityDropdown","",true);
+    enableAndDisableAddressGuarantorInformation()
+}
+
+function getDistrictByCityIdGuarantorInformation() {
+    functions.clearComboOptions('DepsatTrxLeadsGuarantor.district');
+    functions.executeServerEvent("DepsatTrxLeadsGuarantor.city,DepsatTrxLeadsGuarantor.district","cityDropdown","",true);
+    enableAndDisableAddressGuarantorInformation()
+}
+
+function getVillageByDistrictIdGuarantorInformation() {
+    functions.clearComboOptions('DepsatTrxLeadsGuarantor.village');
+    functions.executeServerEvent("DepsatTrxLeadsGuarantor.district,DepsatTrxLeadsGuarantor.village","cityDropdown","",true);
+    enableAndDisableAddressGuarantorInformation()
 }
 
 // get branch name 
