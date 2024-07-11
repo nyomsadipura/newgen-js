@@ -430,6 +430,33 @@ function enableAndDisableAddressGuarantorInformation() {
     CheckFieldForEnableDisable(district,"DepsatTrxLeadsGuarantor.village");
 }
 
+function enableAndDisableAddressCollateralInformation() {
+    const province = functions.getValue('DepSatTrxLeadsCollateral.province');
+    CheckFieldForEnableDisable(province,"DepSatTrxLeadsCollateral.city");
+    const city = functions.getValue('DepSatTrxLeadsCollateral.city');
+    CheckFieldForEnableDisable(city,"DepSatTrxLeadsCollateral.district");
+    const district = functions.getValue('DepSatTrxLeadsCollateral.district');
+    CheckFieldForEnableDisable(district,"DepSatTrxLeadsCollateral.village");
+}
+
+function enableAndDisableAddressApplicantSpouseInformation() {
+    const province = functions.getValue('DepSatTrxLeadsApplicant.spouseprovince');
+    CheckFieldForEnableDisable(province,"DepSatTrxLeadsApplicant.spousecity");
+    // const city = functions.getValue('DepSatTrxLeadsApplicant.spousecity');
+    // CheckFieldForEnableDisable(city,"DepSatTrxLeadsApplicant.spousedistrict");
+    // const district = functions.getValue('DepSatTrxLeadsApplicant.spousedistrict');
+    // CheckFieldForEnableDisable(district,"DepSatTrxLeadsApplicant.spousevillage");
+}
+
+function enableAndDisableAddressOrganizerInformation() {
+    const province = functions.getValue('DepsatTrxLeadsOrganizerV3.province');
+    CheckFieldForEnableDisable(province,"DepsatTrxLeadsOrganizerV3.city");
+    const city = functions.getValue('DepsatTrxLeadsOrganizerV3.city');
+    CheckFieldForEnableDisable(city,"DepsatTrxLeadsOrganizerV3.district");
+    const district = functions.getValue('DepsatTrxLeadsOrganizerV3.district');
+    CheckFieldForEnableDisable(district,"DepsatTrxLeadsOrganizerV3.village");
+}
+
 function actionDisableRejectReason() {
     const actionVal = functions.getValue('FirstJrmDecision');
 
@@ -494,7 +521,7 @@ function getVillageByDistrictIdBusineesInformation() {
 // custom java (Guarantor information)
 
 function getCityByProvinceIdGuarantorInformation() {
-    functions.clearComboOptions('DepsatTrxLeadsBusiness.city');
+    functions.clearComboOptions('DepsatTrxLeadsGuarantor.city');
     functions.executeServerEvent("DepsatTrxLeadsGuarantor.province,DepsatTrxLeadsGuarantor.city","cityDropdown","",true);
     enableAndDisableAddressGuarantorInformation()
 }
@@ -510,6 +537,68 @@ function getVillageByDistrictIdGuarantorInformation() {
     functions.executeServerEvent("DepsatTrxLeadsGuarantor.district,DepsatTrxLeadsGuarantor.village","cityDropdown","",true);
     enableAndDisableAddressGuarantorInformation()
 }
+
+//custom java (Collateral address information)
+
+function getCityByProvinceIdCollateralInformation() {
+    functions.clearComboOptions('DepSatTrxLeadsCollateral.city');
+    functions.executeServerEvent("DepSatTrxLeadsCollateral.province,DepSatTrxLeadsCollateral.city","cityDropdown","",true);
+    enableAndDisableAddressCollateralInformation()
+}
+
+function getDistrictByCityIdCollateralInformation() {
+    functions.clearComboOptions('DepSatTrxLeadsCollateral.district');
+    functions.executeServerEvent("DepSatTrxLeadsCollateral.city,DepSatTrxLeadsCollateral.district","cityDropdown","",true);
+    enableAndDisableAddressCollateralInformation()
+}
+
+function getVillageByDistrictIdCollateralInformation() {
+    functions.clearComboOptions('DepSatTrxLeadsCollateral.village');
+    functions.executeServerEvent("DepSatTrxLeadsCollateral.district,DepSatTrxLeadsCollateral.village","cityDropdown","",true);
+    enableAndDisableAddressCollateralInformation()
+}
+
+//custom java (Applicant Spouse address information)
+
+function getCityByspouseprovinceIdApplicantSpouseInformation() {
+    functions.clearComboOptions('DepSatTrxLeadsApplicant.spousecity');
+    functions.executeServerEvent("DepSatTrxLeadsApplicant.spouseprovince,DepSatTrxLeadsApplicant.spousecity","cityDropdown","",true);
+    enableAndDisableAddressApplicantSpouseInformation()
+}
+/*
+function getDistrictByCityIdApplicantInformation() {
+    functions.clearComboOptions('DepSatTrxLeadsApplicant.spousedistrict');
+    functions.executeServerEvent("DepSatTrxLeadsApplicant.spousecity,DepSatTrxLeadsApplicant.spousedistrict","cityDropdown","",true);
+    enableAndDisableAddressApplicantSpouseInformation()
+}
+
+function getVillageByDistrictIdApplicantInformation() {
+    functions.clearComboOptions('DepSatTrxLeadsApplicant.spousevillage');
+    functions.executeServerEvent("DepSatTrxLeadsApplicant.spousedistrict,DepSatTrxLeadsApplicant.spousevillage","cityDropdown","",true);
+    enableAndDisableAddressApplicantSpouseInformation()
+}
+*/
+
+//custom java (Organizer address information)
+
+function getCityByProvinceIdOrganizerInformation() {
+    functions.clearComboOptions('DepsatTrxLeadsOrganizerV3.city');
+    functions.executeServerEvent("DepsatTrxLeadsOrganizerV3.province,DepsatTrxLeadsOrganizerV3.city","cityDropdown","",true);
+    enableAndDisableAddressOrganizerInformation()
+}
+
+function getDistrictByCityIdOrganizerInformation() {
+    functions.clearComboOptions('DepsatTrxLeadsOrganizerV3.district');
+    functions.executeServerEvent("DepsatTrxLeadsOrganizerV3.city,DepsatTrxLeadsOrganizerV3.district","cityDropdown","",true);
+    enableAndDisableAddressOrganizerInformation()
+}
+
+function getVillageByDistrictIdOrganizerInformation() {
+    functions.clearComboOptions('DepsatTrxLeadsOrganizerV3.village');
+    functions.executeServerEvent("DepsatTrxLeadsOrganizerV3.district,DepsatTrxLeadsOrganizerV3.village","cityDropdown","",true);
+    enableAndDisableAddressOrganizerInformation()
+}
+
 
 // get branch name 
 function getBranchNameByUsername(){
@@ -962,13 +1051,38 @@ function hideShowDataVerificationForm() {
     }
     functions.updateJSON();
 
+    // show hide informasi penjamin berdasarkan value checkbox
     var isGuarantorNeed = functions.getValue("DepsatTrxLeadsGuarantor.isguarantorneed");
     if(isGuarantorNeed == true){
         functions.setStyle("frame9", "visible", "true");
+        functions.updateJSON();
     }else{
         functions.setStyle("frame9", "visible", "false");
+        functions.updateJSON();
     }
     
+    functions.updateJSON();
+
+    // show hide listview agunan berdasarkan checkbox iscollateral
+    var isCollateral = functions.getValue("IsCollateral");
+    if(isCollateral == true){
+        functions.setStyle("DepSatTrxLeadsCollateral", "visible", "true");
+        functions.updateJSON();
+    }else{
+        functions.setStyle("DepSatTrxLeadsCollateral", "visible", "false");
+        functions.updateJSON();
+    }
+    functions.updateJSON();
+
+    // show hide informasi pasangan berdasarkan value status perkawinan applicant
+    var maritalStatus = functions.getValue("DepSatTrxLeadsApplicant.maritalstatus");
+    if(maritalStatus == "Menikah"){
+        functions.setStyle("frame3", "visible", "true");
+        functions.updateJSON();
+    }else{
+        functions.setStyle("frame3", "visible", "false");
+        functions.updateJSON();
+    }
     functions.updateJSON();
  }
 
@@ -1009,13 +1123,38 @@ function hideShowPenjaminDataVerificationForm() {
     var isGuarantorNeed = functions.getValue("DepsatTrxLeadsGuarantor.isguarantorneed");
     if(isGuarantorNeed == true){
         functions.setStyle("frame9", "visible", "true");
+        functions.updateJSON();
     }else{
         functions.setStyle("frame9", "visible", "false");
+        functions.updateJSON();
     }
     
     functions.updateJSON();
 }
 
+function hideShowListViewAgunanDataVerificationForm(){
+    var isCollateral = functions.getValue("IsCollateral");
+    if(isCollateral == true){
+        functions.setStyle("DepSatTrxLeadsCollateral", "visible", "true");
+        functions.updateJSON();
+    }else{
+        functions.setStyle("DepSatTrxLeadsCollateral", "visible", "false");
+        functions.updateJSON();
+    }
+    functions.updateJSON();
+}
+
+function hideShowInformasiPasanganDataVerificationForm(){
+    var maritalStatus = functions.getValue("DepSatTrxLeadsApplicant.maritalstatus");
+    if(maritalStatus == "Menikah"){
+        functions.setStyle("frame3", "visible", "true");
+        functions.updateJSON();
+    }else{
+        functions.setStyle("frame3", "visible", "false");
+        functions.updateJSON();
+    }
+    functions.updateJSON();
+}
 function ApprovalKCPForm() {
     // hide show data verification form based on individual or company
     var costumerType = functions.getValue("DepSatTrxLeadsApplicant.customertype");
