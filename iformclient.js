@@ -475,6 +475,12 @@ function isDigitalSignatureHideButton() {
     functions.updateJSON();
 }
 
+function disableEnableContractReference() {
+    const val = functions.getValue("DepSatTrxLeadsApplicant.submissiontype");
+    functions.setStyle("DepSatTrxLeadsApplicant.contractreference","disible",
+        val === 'Top up' ? "true" : "flase")
+}
+
 
 // custom java (consument information)
 
