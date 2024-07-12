@@ -430,6 +430,15 @@ function enableAndDisableAddressGuarantorInformation() {
     CheckFieldForEnableDisable(district,"DepsatTrxLeadsGuarantor.village");
 }
 
+function enableAndDisableAddressDomicileInformation() {
+    const province = functions.getValue('DepsatTrxLeadsApplicant.provincedomicile2');
+    CheckFieldForEnableDisable(province,"DepsatTrxLeadsApplicant.citydomicile");
+    const city = functions.getValue('DepsatTrxLeadsApplicant.citydomicile');
+    CheckFieldForEnableDisable(city,"DepsatTrxLeadsApplicant.districtdomicile");
+    const district = functions.getValue('DepsatTrxLeadsApplicant.districtdomicile');
+    CheckFieldForEnableDisable(district,"DepsatTrxLeadsApplicant.villagedomicile");
+}
+
 function enableAndDisableAddressCollateralInformation() {
     const province = functions.getValue('DepSatTrxLeadsCollateral.province');
     CheckFieldForEnableDisable(province,"DepSatTrxLeadsCollateral.city");
@@ -536,6 +545,26 @@ function getVillageByDistrictIdGuarantorInformation() {
     functions.clearComboOptions('DepsatTrxLeadsGuarantor.village');
     functions.executeServerEvent("DepsatTrxLeadsGuarantor.district,DepsatTrxLeadsGuarantor.village","cityDropdown","",true);
     enableAndDisableAddressGuarantorInformation()
+}
+
+// custom java (domicile information)
+
+function getCityByProvinceIdDomicileInformation() {
+    functions.clearComboOptions('DepsatTrxLeadsApplicant.citydomicile');
+    functions.executeServerEvent("DepsatTrxLeadsApplicant.provincedomicile2,DepsatTrxLeadsApplicant.citydomicile","cityDropdown","",true);
+    enableAndDisableAddressDomicileInformation()
+}
+
+function getDistrictByCityIdDomicileInformation() {
+    functions.clearComboOptions('DepsatTrxLeadsApplicant.districtdomicile');
+    functions.executeServerEvent("DepsatTrxLeadsApplicant.citydomicile,DepsatTrxLeadsApplicant.districtdomicile","cityDropdown","",true);
+    enableAndDisableAddressDomicileInformation()
+}
+
+function getVillageByDistrictIdDomicileInformation() {
+    functions.clearComboOptions('DepsatTrxLeadsApplicant.villagedomicile');
+    functions.executeServerEvent("DepsatTrxLeadsApplicant.districtdomicile,DepsatTrxLeadsApplicant.villagedomicile","cityDropdown","",true);
+    enableAndDisableAddressDomicileInformation()
 }
 
 //custom java (Collateral address information)
